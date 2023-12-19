@@ -15,9 +15,12 @@
   font-weight: 700;
 }
 
-/* "ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50", */
-
 .input[type="file"] {
   background-color: transparent;
   font-weight: 500;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
