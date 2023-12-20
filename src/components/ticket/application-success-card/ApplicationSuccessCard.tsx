@@ -23,6 +23,7 @@ export default function ApplicationSuccessCard() {
         </p>
       </div>
       <div ref={contentRef} className={styles.cardContent}>
+        <span className={styles.subtitle}>Başvuru detayları · 14:39</span>
         <h4>Başvuru Sahibi Bilgileri:</h4>
         <p>
           <span>Ad:</span> John
@@ -45,7 +46,7 @@ export default function ApplicationSuccessCard() {
           <span>Adres:</span> 123. sok aaa cad.
         </p>
         <div className={styles.badgeWrapper}>
-          <p className={styles.subtitle}>Başvuru kodu:</p>
+          <span className={styles.subtitle}>Başvuru kodu:</span>
           <button className={styles.badge} onClick={() => copyToClipboard("test")}>
             <span>123456-12345</span>
             {!copied ? (
