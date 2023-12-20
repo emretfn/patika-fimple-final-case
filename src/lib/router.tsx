@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import CreateTicketPage from "../pages/CreateTicket/CreateTicketPage";
-import Error from "@/pages/Error/ErrorPage";
-import DefaultLayout from "@/layouts/DefaultLayout/DefaultLayout";
+import CreateTicketPage from "@/pages/create-ticket/CreateTicketPage";
+import Error from "@/pages/error/ErrorPage";
+import DefaultLayout from "@/layouts/default-layout/DefaultLayout";
 
 export const router = createBrowserRouter([
   {
