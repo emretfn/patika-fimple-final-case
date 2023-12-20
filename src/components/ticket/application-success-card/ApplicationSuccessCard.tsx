@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import styles from "./ApplicationSuccessCard.module.css";
 import { Copy, Printer } from "lucide-react";
 import Button from "@/components/ui/Button/Button";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
 export default function ApplicationSuccessCard() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({
+    content: () => contentRef.current,
+  });
+
   return (
     <div className={styles.applicationSuccessCard}>
       <div className={styles.cardHeader}>
@@ -13,7 +20,7 @@ export default function ApplicationSuccessCard() {
           ekibimiz en kısa sürede size geri dönecektir.
         </p>
       </div>
-      <div className={styles.cardContent}>
+      <div ref={contentRef} className={styles.cardContent}>
         <h4>Başvuru Sahibi Bilgileri:</h4>
         <p>
           <span>Ad:</span> John
@@ -45,7 +52,7 @@ export default function ApplicationSuccessCard() {
       </div>
       <div className={styles.cardFooter}>
         <div>
-          <Button size="icon" variant="outline">
+          <Button onClick={handlePrint} size="icon" variant="outline">
             <Printer />
           </Button>
         </div>
