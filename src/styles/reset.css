@@ -126,10 +126,11 @@ table {
 button {
   background-color: transparent;
   border: none;
-  font-family: inherit;
 }
 
-input {
+input,
+textarea,
+button {
   font-family: inherit;
 }
 

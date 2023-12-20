@@ -8,6 +8,7 @@
   width: 100%;
   margin: 1.5rem auto;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .title {

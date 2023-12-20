@@ -13,6 +13,8 @@
   --desctructive-foreground: hsl(60, 9.1%, 97.8%);
 
   --border: hsl(20, 5.9%, 90%);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 body {
