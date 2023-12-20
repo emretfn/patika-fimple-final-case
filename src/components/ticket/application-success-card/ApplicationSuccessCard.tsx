@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./ApplicationSuccessCard.module.css";
-import { Copy, Printer } from "lucide-react";
+import { Check, Copy, Printer } from "lucide-react";
 import Button from "@/components/ui/Button/Button";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import useClipboard from "@/hooks/useClipboard";
 
 export default function ApplicationSuccessCard() {
   const contentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
   });
+  const { copied, copyToClipboard } = useClipboard();
 
   return (
     <div className={styles.applicationSuccessCard}>
@@ -44,9 +46,13 @@ export default function ApplicationSuccessCard() {
         </p>
         <div className={styles.badgeWrapper}>
           <p className={styles.subtitle}>Başvuru kodu:</p>
-          <button className={styles.badge}>
+          <button className={styles.badge} onClick={() => copyToClipboard("test")}>
             <span>123456-12345</span>
-            <Copy className={styles.badgeIcon} />
+            {!copied ? (
+              <Copy className={styles.badgeIcon} />
+            ) : (
+              <Check className={styles.badgeIcon} />
+            )}
           </button>
         </div>
       </div>
