@@ -1,0 +1,17 @@
+/* Form Field */
+.formField {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.formField label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.formField span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--desctructive);
+}

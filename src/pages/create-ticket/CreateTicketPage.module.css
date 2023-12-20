@@ -1,0 +1,16 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  width: 100%;
+  margin: 1.5rem auto;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
