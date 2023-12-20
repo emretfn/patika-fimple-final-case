@@ -1,14 +1,18 @@
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(240, 10%, 3.9%);
+  --foreground: hsl(20, 14.3%, 4.1%);
 
-  --primary: hsl(240, 5.9%, 10%);
-  --primary-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(24.6, 95%, 53.1%);
+  --primary-hover: hsla(24.6, 95%, 53.1%, 0.9);
+  --primary-foreground: hsl(60, 9.1%, 97.8%);
 
-  --accent: hsl(240, 4.8%, 95.9%);
-  --accent-foreground: hsl(240, 5.9%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
 
-  --border: hsl(240, 5.9%, 90%);
+  --desctructive: hsl(0, 84.2%, 60.2%);
+  --desctructive-foreground: hsl(60, 9.1%, 97.8%);
+
+  --border: hsl(20, 5.9%, 90%);
 }
 
 body {

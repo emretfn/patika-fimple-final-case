@@ -22,7 +22,7 @@
 }
 
 .base.default:hover {
-  background-color: rgba(24, 24, 27, 0.9);
+  background-color: var(--primary-hover);
 }
 
 .base.outline {
