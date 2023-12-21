@@ -3,34 +3,81 @@ import styles from "./CreateTicketForm.module.css";
 import Textarea from "@/components/ui/Textarea/Textarea";
 import Button from "@/components/ui/Button/Button";
 import FormField from "@/components/form-field/FormField";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CreateTicketType, createTicketSchema } from "@/lib/validations/create-ticket-schema";
+import { mockUpload } from "@/lib/helpers/mockUpload";
+import api from "@/lib/api";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTicketForm() {
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<CreateTicketType>({
+    resolver: yupResolver(createTicketSchema),
+  });
+
+  const createTicket: SubmitHandler<CreateTicketType> = async (formData) => {
+    try {
+      const { attachments, ...rest } = formData;
+      let attachmentsUrls: string[] = [];
+
+      // Check if there are any attachments and upload them
+      if (attachments && attachments.length > 0) {
+        attachmentsUrls = await mockUpload(attachments as FileList);
+      }
+
+      // Send the ticket data to the server
+      const dataToSend = {
+        ...rest,
+        attachments: attachmentsUrls,
+      };
+
+      const { data } = await api.post("/tickets", dataToSend);
+      console.log("data", data);
+      navigate(`/basvuru-basarili?ticketCode=${data.ticketCode}`);
+    } catch (error) {
+      // TODO ADD TOASTER
+      console.log("error", error);
+    }
+  };
+
   return (
-    <form className={styles.form}>
+    <form onSubmit={handleSubmit(createTicket)} className={styles.form}>
       <div className={styles.col2}>
-        <FormField htmlFor="name" label="Adınız">
-          <Input id="name" name="name" />
+        <FormField htmlFor="userName" label="Adınız" error={errors.userName?.message}>
+          <Input id="userName" {...register("userName")} />
         </FormField>
-        <FormField htmlFor="surname" label="Soyadınız">
-          <Input id="surname" name="surname" />
+        <FormField htmlFor="userSurname" label="Soyadınız" error={errors.userSurname?.message}>
+          <Input id="userSurname" {...register("userSurname")} />
         </FormField>
-        <FormField htmlFor="age" label="Yaşınız">
-          <Input id="age" name="age" />
+        <FormField htmlFor="userAge" label="Yaşınız" error={errors.userAge?.message}>
+          <Input id="userAge" type="number" {...register("userAge")} />
         </FormField>
-        <FormField htmlFor="tc" label="TC Kimlik Numaranız">
-          <Input id="tc" name="tc" />
+        <FormField htmlFor="userTc" label="TC Kimlik Numaranız" error={errors.userTc?.message}>
+          <Input id="userTc" {...register("userTc")} />
         </FormField>
       </div>
-      <FormField htmlFor="reason" label="Başvuru Nedeni">
-        <Textarea id="reason" name="reason" />
+      <FormField htmlFor="reason" label="Başvuru Nedeni" error={errors.reason?.message}>
+        <Textarea id="reason" {...register("reason")} />
       </FormField>
-      <FormField htmlFor="address" label="Adres Bilgisi">
-        <Textarea id="address" name="address" />
+      <FormField htmlFor="address" label="Adres Bilgisi" error={errors.address?.message}>
+        <Textarea id="address" {...register("address")} />
       </FormField>
-      <FormField htmlFor="attachments" label="Fotoğraflar/Ekler">
-        <Input type="file" id="attachments" name="attachments" />
+      <FormField
+        htmlFor="attachments"
+        label="Fotoğraflar/Ekler"
+        error={errors.attachments?.message}
+      >
+        <Input type="file" id="attachments" multiple {...register("attachments")} />
       </FormField>
-      <Button type="submit">Gönder</Button>
+      <Button disabled={isSubmitting} type="submit">
+        Gönder
+      </Button>
     </form>
   );
 }

@@ -3,8 +3,8 @@ import ApplicationSuccessCard from "@/components/ticket/application-success-card
 
 const ApplicationSuccessPage = () => {
   const [searchParams] = useSearchParams();
-  const ticketId = searchParams.get("ticketId");
-  if (!ticketId) {
+  const ticketCode = searchParams.get("ticketCode");
+  if (!ticketCode) {
     return <Navigate to={"/basvuru-olustur"} />;
   }
 
