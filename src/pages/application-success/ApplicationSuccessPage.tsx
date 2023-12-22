@@ -1,16 +1,17 @@
-import { useSearchParams, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import ApplicationSuccessCard from "@/components/ticket/application-success-card/ApplicationSuccessCard";
+import { useTicket } from "@/store/ticket/useTicket";
 
 const ApplicationSuccessPage = () => {
-  const [searchParams] = useSearchParams();
-  const ticketCode = searchParams.get("ticketCode");
-  if (!ticketCode) {
+  const ticket = useTicket();
+
+  if (!ticket) {
     return <Navigate to={"/basvuru-olustur"} />;
   }
 
   return (
     <main className="container">
-      <ApplicationSuccessCard />
+      <ApplicationSuccessCard ticket={ticket} />
     </main>
   );
 };

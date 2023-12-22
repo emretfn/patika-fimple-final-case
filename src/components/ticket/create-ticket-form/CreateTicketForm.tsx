@@ -9,9 +9,12 @@ import { CreateTicketType, createTicketSchema } from "@/lib/validations/create-t
 import { mockUpload } from "@/lib/helpers/mockUpload";
 import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTicket } from "@/store/ticket/ticketSlice";
 
 export default function CreateTicketForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -38,8 +41,8 @@ export default function CreateTicketForm() {
       };
 
       const { data } = await api.post("/tickets", dataToSend);
-      console.log("data", data);
-      navigate(`/basvuru-basarili?ticketCode=${data.ticketCode}`);
+      dispatch(setTicket(data));
+      navigate("/basvuru-basarili");
     } catch (error) {
       // TODO ADD TOASTER
       console.log("error", error);

@@ -5,13 +5,19 @@ import Button from "@/components/ui/Button/Button";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import useClipboard from "@/hooks/useClipboard";
+import { Ticket } from "@/types";
 
-export default function ApplicationSuccessCard() {
+interface ApplicationSuccessCardProps {
+  ticket: Ticket;
+}
+
+export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCardProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
   });
   const { copied, copyToClipboard } = useClipboard();
+  const date = new Date(ticket.createdAt);
 
   return (
     <div className={styles.applicationSuccessCard}>
@@ -23,38 +29,25 @@ export default function ApplicationSuccessCard() {
         </p>
       </div>
       <div ref={contentRef} className={styles.cardContent}>
-        <span className={styles.subtitle}>Başvuru detayları · 14:39</span>
+        <span className={styles.subtitle}>
+          Başvuru detayları ·
+          {" " + date.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}
+        </span>
         <h4>Başvuru Sahibi Bilgileri:</h4>
-        <p>
-          <span>Ad:</span> John
-        </p>
-        <p>
-          <span>Soyad:</span> Doe
-        </p>
-        <p>
-          <span>Yaş:</span> 24
-        </p>
-        <p>
-          <span>TC Kimlik Numarası:</span> 11111111111
-        </p>
-        <p>
-          <span>Başvuru nedeni:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-          nam nesciunt odio id cupiditate dolore, temporibus voluptatem iure illum eligendi quos
-          accusamus optio quisquam hic. Veritatis fugit eveniet nulla sapiente?
-        </p>
-        <p>
-          <span>Adres:</span> 123. sok aaa cad.
-        </p>
+        <UserInfo title="Ad" value={ticket.userName} />
+        <UserInfo title="Soyad" value={ticket.userSurname} />
+        <UserInfo title="Yaş" value={ticket.userAge.toString()} />
+        <UserInfo title="TC Kimlik Numarası" value={ticket.userTc} />
+        <UserInfo title="Başvuru Nedeni" value={ticket.reason} />
+        <UserInfo title="Adres" value={ticket.address} />
+
         <div className={styles.badgeWrapper}>
           <span className={styles.subtitle}>Başvuru kodu:</span>
-          <button className={styles.badge} onClick={() => copyToClipboard("test")}>
-            <span>123456-12345</span>
-            {!copied ? (
-              <Copy className={styles.badgeIcon} />
-            ) : (
-              <Check className={styles.badgeIcon} />
-            )}
-          </button>
+          <CodeBadge
+            ticketCode={ticket.ticketCode}
+            copyToClipboard={copyToClipboard}
+            copied={copied}
+          />
         </div>
       </div>
       <div className={styles.cardFooter}>
@@ -70,3 +63,28 @@ export default function ApplicationSuccessCard() {
     </div>
   );
 }
+
+const UserInfo = ({ title, value }: { title: string; value: string }) => {
+  return (
+    <p>
+      <span>{title}:</span> {value}
+    </p>
+  );
+};
+
+const CodeBadge = ({
+  ticketCode,
+  copyToClipboard,
+  copied,
+}: {
+  ticketCode: string;
+  copyToClipboard: (text: string) => void;
+  copied: boolean;
+}) => {
+  return (
+    <button className={styles.badge} onClick={() => copyToClipboard(ticketCode)}>
+      <span>{ticketCode}</span>
+      {!copied ? <Copy className={styles.badgeIcon} /> : <Check className={styles.badgeIcon} />}
+    </button>
+  );
+};
