@@ -1,5 +1,5 @@
 import PageBanner from "@/components/page-banner/PageBanner";
-import styles from "./TicketInquiryPage.module.css";
+import styles from "./InquiryTicketPage.module.css";
 
 import InquiryTicketForm from "@/components/ticket/inquiry-ticket-form/InquiryTicketForm";
 export default function TicketInquiryPage() {
@@ -9,8 +9,10 @@ export default function TicketInquiryPage() {
         title="Başvuru Sorgula"
         description="Başvuru detaylarını sorgulamak için lütfen başvuru kodunuzu giriniz."
       />
-      <div className={`container ${styles.formSection}`}>
-        <InquiryTicketForm />
+      <div className="container">
+        <div className={styles.formSection}>
+          <InquiryTicketForm />
+        </div>
       </div>
     </main>
   );

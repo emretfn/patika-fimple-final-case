@@ -4,7 +4,7 @@ import Error from "@/pages/error/ErrorPage";
 import DefaultLayout from "@/layouts/default-layout/DefaultLayout";
 import ApplicationSuccessPage from "@/pages/application-success/ApplicationSuccessPage";
 import HomePage from "@/pages/home/HomePage";
-import TicketInquiryPage from "@/pages/ticket-inquiry/TicketInquiryPage";
+import TicketInquiryPage from "@/pages/inquiry-ticket/InquiryTicketPage";
 
 export const router = createBrowserRouter([
   {
