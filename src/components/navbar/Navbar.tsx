@@ -6,7 +6,7 @@ const Navbar = () => {
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>
         <Link to={"/"}>
-          <img src="ticketease-logo.svg" alt="ticketease logo" />
+          <img src="/ticketease-logo.svg" alt="ticketease logo" />
         </Link>
         <div className={styles.links}>
           <Link to={"/basvuru-olustur"}>Başvuru Oluştur</Link>
