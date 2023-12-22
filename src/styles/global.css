@@ -6,6 +6,7 @@
   --primary: hsl(24.6, 95%, 53.1%);
   --primary-hover: hsla(24.6, 95%, 53.1%, 0.9);
   --primary-foreground: hsl(60, 9.1%, 97.8%);
+  --primary-light: hsl(34, 100%, 91.8%);
 
   --accent: hsl(60, 4.8%, 95.9%);
   --accent-foreground: hsl(24, 9.8%, 10%);

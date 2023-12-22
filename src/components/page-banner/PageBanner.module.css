@@ -1,0 +1,41 @@
+.pageBanner {
+  background-color: var(--primary-light);
+  box-shadow: var(--shadow-sm);
+}
+.pageBanner .pageCaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  row-gap: 0.5rem;
+  padding: 1.5rem 1rem;
+}
+
+.pageCaption h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pageCaption p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .pageCaption h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .pageCaption p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .pageBanner .pageCaption {
+    padding: 3rem 1rem;
+  }
+}
