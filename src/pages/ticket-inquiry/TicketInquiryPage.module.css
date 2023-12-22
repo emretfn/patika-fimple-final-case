@@ -1,0 +1,9 @@
+.formSection {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .formSection {
+    margin-top: 3rem;
+  }
+}

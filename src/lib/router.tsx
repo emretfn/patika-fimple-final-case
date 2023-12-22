@@ -4,6 +4,7 @@ import Error from "@/pages/error/ErrorPage";
 import DefaultLayout from "@/layouts/default-layout/DefaultLayout";
 import ApplicationSuccessPage from "@/pages/application-success/ApplicationSuccessPage";
 import HomePage from "@/pages/home/HomePage";
+import TicketInquiryPage from "@/pages/ticket-inquiry/TicketInquiryPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "/basvuru-basarili",
         element: <ApplicationSuccessPage />,
+      },
+      {
+        path: "/basvuru-sorgula",
+        element: <TicketInquiryPage />,
       },
     ],
   },
