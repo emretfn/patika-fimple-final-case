@@ -17,22 +17,15 @@ export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCar
     content: () => contentRef.current,
   });
   const { copied, copyToClipboard } = useClipboard();
+
+  //Application time
   const date = new Date(ticket.createdAt);
+  const applicationTime = date.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
 
   return (
     <div className={styles.applicationSuccessCard}>
-      <div className={styles.cardHeader}>
-        <h2>Başvurunuz başarıyla alındı!</h2>
-        <p>
-          Destek ekibimizle iletişime geçtiğiniz için teşekkür ederiz. Biletinizi başarıyla aldık ve
-          ekibimiz en kısa sürede size geri dönecektir.
-        </p>
-      </div>
       <div ref={contentRef} className={styles.cardContent}>
-        <span className={styles.subtitle}>
-          Başvuru detayları ·
-          {" " + date.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}
-        </span>
+        <span className={styles.subtitle}>Başvuru detayları · {applicationTime}</span>
         <h4>Başvuru Sahibi Bilgileri:</h4>
         <UserInfo title="Ad" value={ticket.userName} />
         <UserInfo title="Soyad" value={ticket.userSurname} />
@@ -57,7 +50,7 @@ export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCar
           </Button>
         </div>
         <div>
-          <Link to={"/basvuru-sorgula"}>Başvuru durumunu sorgula</Link>
+          <Link to={`/basvuru/${ticket.ticketCode}`}>Başvuru durumunu sorgula</Link>
         </div>
       </div>
     </div>
