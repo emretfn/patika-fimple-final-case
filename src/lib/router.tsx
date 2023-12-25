@@ -16,17 +16,17 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "/basvuru-olustur", element: <CreateTicketPage /> },
+      { path: "basvuru-olustur", element: <CreateTicketPage /> },
       {
-        path: "/basvuru-basarili",
+        path: "basvuru-basarili",
         element: <ApplicationSuccessPage />,
       },
       {
-        path: "/basvuru-sorgula",
+        path: "basvuru-sorgula",
         element: <TicketInquiryPage />,
       },
       {
-        path: "/basvuru/:ticketCode",
+        path: "basvuru/:ticketCode",
         element: <TicketDetailPage />,
       },
     ],
@@ -40,6 +40,5 @@ export const router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />,
     errorElement: <Error />,
-    children: [],
   },
 ]);
