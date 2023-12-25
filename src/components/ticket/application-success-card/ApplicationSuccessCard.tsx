@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import useClipboard from "@/hooks/useClipboard";
 import { Ticket } from "@/types";
+import Badge from "@/components/ui/Badge/Badge";
+import { Card, CardContent } from "@/components/card/Card";
 
 interface ApplicationSuccessCardProps {
   ticket: Ticket;
@@ -23,37 +25,42 @@ export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCar
   const applicationTime = date.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
 
   return (
-    <div className={styles.applicationSuccessCard}>
-      <div ref={contentRef} className={styles.cardContent}>
-        <span className={styles.subtitle}>Başvuru detayları · {applicationTime}</span>
-        <h4>Başvuru Sahibi Bilgileri:</h4>
-        <UserInfo title="Ad" value={ticket.userName} />
-        <UserInfo title="Soyad" value={ticket.userSurname} />
-        <UserInfo title="Yaş" value={ticket.userAge.toString()} />
-        <UserInfo title="TC Kimlik Numarası" value={ticket.userTc} />
-        <UserInfo title="Başvuru Nedeni" value={ticket.reason} />
-        <UserInfo title="Adres" value={ticket.address} />
+    <Card className={styles.card}>
+      <CardContent>
+        <div ref={contentRef} className={styles.details}>
+          <span className={styles.subtitle}>Başvuru detayları · {applicationTime}</span>
+          <h4>Başvuru Sahibi Bilgileri:</h4>
+          <UserInfo title="Ad" value={ticket.userName} />
+          <UserInfo title="Soyad" value={ticket.userSurname} />
+          <UserInfo title="Yaş" value={ticket.userAge.toString()} />
+          <UserInfo title="TC Kimlik Numarası" value={ticket.userTc} />
+          <UserInfo title="Başvuru Nedeni" value={ticket.reason} />
+          <UserInfo title="Adres" value={ticket.address} />
 
-        <div className={styles.badgeWrapper}>
-          <span className={styles.subtitle}>Başvuru kodu:</span>
-          <CodeBadge
-            ticketCode={ticket.ticketCode}
-            copyToClipboard={copyToClipboard}
-            copied={copied}
-          />
+          <div className={styles.badgeWrapper}>
+            <span className={styles.subtitle}>Başvuru kodu:</span>
+            <Badge className={styles.badge} onClick={() => copyToClipboard(ticket.ticketCode)}>
+              {ticket.ticketCode}
+              {!copied ? (
+                <Copy className={styles.badgeIcon} />
+              ) : (
+                <Check className={styles.badgeIcon} />
+              )}
+            </Badge>
+          </div>
         </div>
-      </div>
-      <div className={styles.cardFooter}>
-        <div>
-          <Button onClick={handlePrint} size="icon" variant="outline">
-            <Printer />
-          </Button>
+        <div className={styles.cardFooter}>
+          <div>
+            <Button onClick={handlePrint} size="icon" variant="outline">
+              <Printer />
+            </Button>
+          </div>
+          <div>
+            <Link to={`/basvuru/${ticket.ticketCode}`}>Başvuru durumunu sorgula</Link>
+          </div>
         </div>
-        <div>
-          <Link to={`/basvuru/${ticket.ticketCode}`}>Başvuru durumunu sorgula</Link>
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -62,22 +69,5 @@ const UserInfo = ({ title, value }: { title: string; value: string }) => {
     <p>
       <span>{title}:</span> {value}
     </p>
-  );
-};
-
-const CodeBadge = ({
-  ticketCode,
-  copyToClipboard,
-  copied,
-}: {
-  ticketCode: string;
-  copyToClipboard: (text: string) => void;
-  copied: boolean;
-}) => {
-  return (
-    <button className={styles.badge} onClick={() => copyToClipboard(ticketCode)}>
-      <span>{ticketCode}</span>
-      {!copied ? <Copy className={styles.badgeIcon} /> : <Check className={styles.badgeIcon} />}
-    </button>
   );
 };

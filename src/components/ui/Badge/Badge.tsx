@@ -1,5 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority";
 import styles from "./Badge.module.css";
+import clsx from "clsx";
 
 const badgeVariants = cva(styles.badgeContainer, {
   variants: {
@@ -22,6 +23,10 @@ interface BadgeProps
   children: React.ReactNode;
 }
 
-export default function Badge({ children, variant }: BadgeProps) {
-  return <div className={badgeVariants({ variant })}>{children}</div>;
+export default function Badge({ children, variant, className, ...props }: BadgeProps) {
+  return (
+    <div className={clsx(badgeVariants({ variant }), className)} {...props}>
+      {children}
+    </div>
+  );
 }

@@ -1,14 +1,9 @@
-.applicationSuccessCard {
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  box-shadow: var(--shadow-sm);
-  width: 100%;
-  margin: 1.5rem auto;
-  padding: 1rem;
+.card {
+  margin-top: 1.5rem;
 }
 
 /* Card Content */
-.cardContent {
+.details {
   display: flex;
   flex-direction: column;
   row-gap: 0.25rem;
@@ -16,52 +11,43 @@
   border-bottom: 1px solid var(--border);
 }
 
-.cardContent h4 {
+.details h4 {
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
 }
 
-.cardContent > p {
+.details > p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: var(--muted-foreground);
 }
 
-.cardContent > p > span {
+.details > p > span {
   font-weight: 500;
   color: var(--foreground);
 }
 
-.cardContent .badgeWrapper {
+.details .badgeWrapper {
   display: flex;
   flex-direction: column;
   row-gap: 0.25rem;
   margin-top: 1rem;
 }
 
-.cardContent .subtitle {
+.details .subtitle {
   font-weight: 500;
   font-size: 0.875rem;
   color: var(--muted-foreground);
 }
 
-.cardContent .badge {
-  display: inline-flex;
+.details .badge {
   align-self: flex-start;
-  align-items: center;
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
   cursor: pointer;
   font-size: 0.875rem;
 }
-.cardContent .badge:hover {
-  background-color: var(--primary-hover);
-}
 
-.cardContent .badge .badgeIcon {
+.details .badge .badgeIcon {
   margin-left: 0.25rem;
   width: 0.875rem;
   height: 0.875rem;
@@ -90,45 +76,36 @@
 }
 
 @media print {
-  .cardContent {
+  .details {
     border: none;
   }
-  .cardContent .badge {
+  .details .badgeWrapper .badge {
     background-color: var(--background);
     color: var(--foreground);
     font-size: 1.5rem;
     padding: 0;
   }
 
-  .cardContent .badge .badgeIcon {
+  .details .badge .badgeIcon {
     display: none;
   }
 }
 
 @media (min-width: 640px) {
-  .applicationSuccessCard {
+  .card {
     padding: 2rem;
   }
 
-  .cardContent,
-  .cardHeader,
+  .details,
   .cardFooter {
     padding: 1.5rem;
   }
 
-  .cardHeader h2 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-  .cardHeader p {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-  .cardContent .badgeWrapper {
+  .details .badgeWrapper {
     margin-top: 1.5rem;
   }
 
-  .cardContent > p {
+  .details > p {
     line-height: 1.5rem;
     font-size: 1rem;
   }

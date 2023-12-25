@@ -12,6 +12,10 @@
   color: white;
 }
 
+.badgeContainer.default:hover {
+  background-color: var(--primary-hover);
+}
+
 .badgeContainer.error {
   background-color: var(--desctructive);
   color: var(--desctructive-foreground);
