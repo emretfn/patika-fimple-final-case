@@ -78,7 +78,7 @@ export default function CreateTicketForm() {
       >
         <Input type="file" id="attachments" multiple {...register("attachments")} />
       </FormField>
-      <Button disabled={isSubmitting} type="submit">
+      <Button loading={isSubmitting} type="submit">
         Gönder
       </Button>
     </form>
