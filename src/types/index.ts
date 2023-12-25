@@ -15,3 +15,10 @@ export type Ticket = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type User = {
+  id: number;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+};
