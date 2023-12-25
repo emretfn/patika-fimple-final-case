@@ -5,6 +5,7 @@ import DefaultLayout from "@/layouts/default-layout/DefaultLayout";
 import ApplicationSuccessPage from "@/pages/application-success/ApplicationSuccessPage";
 import HomePage from "@/pages/home/HomePage";
 import TicketInquiryPage from "@/pages/inquiry-ticket/InquiryTicketPage";
+import TicketDetailPage from "@/pages/ticket-detail/TicketDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/basvuru-sorgula",
         element: <TicketInquiryPage />,
+      },
+      {
+        path: "/basvuru/:ticketCode",
+        element: <TicketDetailPage />,
       },
     ],
   },

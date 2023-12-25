@@ -9,6 +9,7 @@ export type Ticket = {
   ticketCode: string;
   reason: string;
   address: string;
+  response?: string;
   attachment?: string[];
   status: TicketStatus;
   createdAt: string;

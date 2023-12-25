@@ -1,0 +1,24 @@
+.main .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.container .cardContainer {
+  flex: 1;
+}
+
+.infoTitle {
+  font-weight: 700;
+}
+
+.contentWrapper {
+  row-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .main .container {
+    flex-direction: row;
+  }
+}

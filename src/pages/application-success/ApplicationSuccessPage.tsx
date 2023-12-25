@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import ApplicationSuccessCard from "@/components/ticket/application-success-card/ApplicationSuccessCard";
-import { useTicket } from "@/store/ticket/useTicket";
+import { useTicketStore } from "@/store/ticket/hooks";
 import PageBanner from "@/components/page-banner/PageBanner";
 
 const ApplicationSuccessPage = () => {
-  const ticket = useTicket();
+  const { ticket } = useTicketStore();
 
   if (!ticket) {
     return <Navigate to={"/basvuru-olustur"} />;
