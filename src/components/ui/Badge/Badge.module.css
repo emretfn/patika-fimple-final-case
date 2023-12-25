@@ -1,0 +1,28 @@
+.badgeContainer {
+  display: inline-flex;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+
+.badgeContainer.default {
+  background-color: var(--primary);
+  color: white;
+}
+
+.badgeContainer.error {
+  background-color: var(--desctructive);
+  color: var(--desctructive-foreground);
+}
+
+.badgeContainer.success {
+  background-color: var(--success);
+  color: var(--success-foreground);
+}
+
+.badgeContainer.warning {
+  background-color: var(--warning);
+  color: var(--warning-foreground);
+}

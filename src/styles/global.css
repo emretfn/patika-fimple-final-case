@@ -14,6 +14,12 @@
   --desctructive: hsl(0, 84.2%, 60.2%);
   --desctructive-foreground: hsl(60, 9.1%, 97.8%);
 
+  --success: hsl(120, 40%, 50%);
+  --success-foreground: hsl(60, 9.1%, 97.8%);
+
+  --warning: hsl(39, 97%, 50%);
+  --warning-foreground: hsl(60, 9.1%, 97.8%);
+
   --border: hsl(20, 5.9%, 90%);
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
