@@ -6,6 +6,8 @@ import ApplicationSuccessPage from "@/pages/application-success/ApplicationSucce
 import HomePage from "@/pages/home/HomePage";
 import TicketInquiryPage from "@/pages/inquiry-ticket/InquiryTicketPage";
 import TicketDetailPage from "@/pages/ticket-detail/TicketDetailPage";
+import AdminLayout from "@/layouts/admin-layout/AdminLayout";
+import AdminLoginPage from "@/pages/admin-login/AdminLoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,5 +30,16 @@ export const router = createBrowserRouter([
         element: <TicketDetailPage />,
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLoginPage />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    errorElement: <Error />,
+    children: [],
   },
 ]);
