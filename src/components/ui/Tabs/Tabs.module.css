@@ -1,0 +1,41 @@
+.tabsList {
+  display: inline-flex;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: var(--muted);
+  padding: 0.25rem;
+  color: var(--muted-foreground);
+}
+
+.tabsTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  padding: 0.325rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  color: inherit;
+}
+
+.tabsTrigger:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.tabsTrigger[data-state="active"] {
+  color: var(--primary);
+  background-color: var(--background);
+  box-shadow: var(--shadow-sm);
+}
+
+.tabsContent {
+  margin-top: 0.5rem;
+}
