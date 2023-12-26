@@ -11,6 +11,8 @@ import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTicket } from "@/store/ticket/ticketSlice";
+import { AxiosError } from "axios";
+import { toast } from "sonner";
 
 export default function CreateTicketForm() {
   const navigate = useNavigate();
@@ -44,8 +46,9 @@ export default function CreateTicketForm() {
       dispatch(setTicket(data));
       navigate("/basvuru-basarili");
     } catch (error) {
-      // TODO ADD TOASTER
-      console.log("error", error);
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message?.[0]);
+      }
     }
   };
 

@@ -10,6 +10,7 @@ import { AppDispatch } from "@/store";
 import { login } from "@/store/auth/authThunk";
 import { useAuth } from "@/store/auth/hooks";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function AdminLoginForm() {
   const navigate = useNavigate();
@@ -28,11 +29,11 @@ export default function AdminLoginForm() {
     dispatch(login(data))
       .unwrap()
       .then(() => {
+        toast.success("Giriş başarılı");
         navigate("/admin/basvuru-listesi");
       })
       .catch((err) => {
-        // TODO: add error handling
-        console.log(err);
+        toast.error(err);
       });
   };
 
