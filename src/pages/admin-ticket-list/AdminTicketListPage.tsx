@@ -1,20 +1,36 @@
+import { useDispatch } from "react-redux";
 import styles from "./AdminTicketListPage.module.css";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/Tabs/Tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs/Tabs";
+import { AppDispatch } from "@/store";
+import { useEffect, useState } from "react";
+import { fetchTickets } from "@/store/ticket/ticketThunk";
+import { useTicketStore } from "@/store/ticket/hooks";
+import TicketCardList from "@/components/ticket/ticket-card-list/TicketCardList";
+import Spinner from "@/components/ui/Spinner/Spinner";
 
 export default function AdminTicketListPage() {
+  const [activeTab, setActiveTab] = useState<"unsolved" | "all">("unsolved");
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, tickets } = useTicketStore();
+
+  useEffect(() => {
+    dispatch(fetchTickets(activeTab));
+  }, [activeTab, dispatch]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as "unsolved" | "all");
+  };
+
   return (
     <main className="container">
-      <Tabs defaultValue="unsolved" className={styles.tabs}>
+      <Tabs value={activeTab} onValueChange={handleTabChange} className={styles.tabs}>
         <TabsList className={styles.tabsList}>
           <TabsTrigger value="unsolved">Çözülmemiş Başvurular</TabsTrigger>
           <TabsTrigger value="all">Tüm Başvurular</TabsTrigger>
         </TabsList>
-        <TabsContent value="unsolved" className={styles.tabsContent}>
-          Tabs 1
-        </TabsContent>
-        <TabsContent value="all" className={styles.tabsContent}>
-          Tabs 2
-        </TabsContent>
+        <div className={styles.tabsContent}>
+          {loading ? <Spinner size={36} /> : <TicketCardList tickets={tickets} />}
+        </div>
       </Tabs>
     </main>
   );

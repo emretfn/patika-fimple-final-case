@@ -1,16 +1,18 @@
 import { Ticket } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { fetchTicketByCode } from "./ticketThunk";
+import { fetchTicketByCode, fetchTickets } from "./ticketThunk";
 
 export interface TicketState {
   ticket: Ticket | null;
+  tickets: Ticket[] | [];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: TicketState = {
   ticket: null,
+  tickets: [],
   loading: false,
   error: null,
 };
@@ -38,6 +40,21 @@ export const ticketSlice = createSlice({
       state.loading = false;
       state.error = action.error.message || null;
       state.ticket = null;
+    });
+    builder.addCase(fetchTickets.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.tickets = [];
+    });
+    builder.addCase(fetchTickets.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.tickets = action.payload;
+    });
+    builder.addCase(fetchTickets.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message || null;
+      state.tickets = [];
     });
   },
 });
