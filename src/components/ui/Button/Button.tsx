@@ -2,6 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import styles from "./Button.module.css";
 import { forwardRef } from "react";
 import Spinner from "../Spinner/Spinner";
+import clsx from "clsx";
 
 const buttonVariants = cva(styles.base, {
   variants: {
@@ -29,11 +30,11 @@ export interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, variant, size, disabled, loading, ...props }, ref) => {
+  ({ children, variant, size, disabled, loading, className, ...props }, ref) => {
     return (
       <button
         ref={ref}
-        className={buttonVariants({ variant, size })}
+        className={clsx(buttonVariants({ variant, size }), className)}
         disabled={disabled || loading}
         {...props}
       >
