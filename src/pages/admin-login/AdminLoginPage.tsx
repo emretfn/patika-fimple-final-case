@@ -14,6 +14,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className={styles.container}>
+      <img src="/ticketease-logo.svg" alt="ticketease logo" />
       <Card className={styles.card}>
         <CardHeader className={styles.cardHeader}>Yönetici Paneli Giriş</CardHeader>
         <CardContent>
