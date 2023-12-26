@@ -1,0 +1,25 @@
+.card {
+  gap: 0;
+}
+
+.cardHeader {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.cardContent {
+  gap: 0.5rem;
+}
+
+.cardContent > p {
+  color: var(--muted-foreground);
+}
+
+.cardContent .badge {
+  align-self: flex-start;
+}
+
+.button {
+  margin-top: 1rem;
+  align-self: flex-start;
+}
