@@ -26,6 +26,7 @@ export const login = createAsyncThunk(
     try {
       const response = await api.post("/auth/login", payload);
       setToken(response.data.accessToken);
+      api.defaults.headers.Authorization = `Bearer ${response.data.accessToken}`;
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -37,4 +38,5 @@ export const login = createAsyncThunk(
 
 export const signOut = createAsyncThunk("auth/signOut", async () => {
   removeToken();
+  delete api.defaults.headers.Authorization;
 });
