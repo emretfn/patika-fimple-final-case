@@ -25,11 +25,9 @@ export const login = createAsyncThunk(
   async (payload: AdminLoginType, { rejectWithValue }) => {
     try {
       const response = await api.post("/auth/login", payload);
-      console.log(response, "response");
       setToken(response.data.accessToken);
       return response.data;
     } catch (error) {
-      console.log;
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data.message);
       }
