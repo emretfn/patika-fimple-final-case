@@ -24,6 +24,11 @@ export const ticketSlice = createSlice({
     setTicket: (state, action: PayloadAction<Ticket>) => {
       state.ticket = action.payload;
     },
+    updateTicket: (state, action: PayloadAction<Ticket>) => {
+      if (state.ticket && state.ticket.id === action.payload.id) {
+        state.ticket = action.payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTicketByCode.fulfilled, (state, action: PayloadAction<Ticket>) => {
@@ -59,6 +64,6 @@ export const ticketSlice = createSlice({
   },
 });
 
-export const { setTicket } = ticketSlice.actions;
+export const { setTicket, updateTicket } = ticketSlice.actions;
 
 export default ticketSlice.reducer;

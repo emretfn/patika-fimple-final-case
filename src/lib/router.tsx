@@ -9,6 +9,7 @@ import TicketDetailPage from "@/pages/ticket-detail/TicketDetailPage";
 import AdminLayout from "@/layouts/admin-layout/AdminLayout";
 import AdminLoginPage from "@/pages/admin-login/AdminLoginPage";
 import AdminTicketListPage from "@/pages/admin-ticket-list/AdminTicketListPage";
+import AdminTicketDetailPage from "@/pages/admin-ticket-detail/AdminTicketDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,9 @@ export const router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />,
     errorElement: <Error />,
-    children: [{ path: "basvuru-listesi", element: <AdminTicketListPage /> }],
+    children: [
+      { path: "basvuru-listesi", element: <AdminTicketListPage /> },
+      { path: "basvuru/:ticketCode", element: <AdminTicketDetailPage /> },
+    ],
   },
 ]);
