@@ -1,6 +1,6 @@
 import { TicketStatus } from "@/types";
 
-export const getTicketStatusVariant = (status: TicketStatus) => {
+export const getTicketStatusVariant = (status: TicketStatus | undefined) => {
   switch (status) {
     case "WAITING":
       return "warning";

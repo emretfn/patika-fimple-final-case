@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { getStatusText } from "@/lib/helpers/getStatusText";
 import Spinner from "@/components/ui/Spinner/Spinner";
+import { getTicketStatusVariant } from "@/lib/helpers/getTicketStatusVariant";
 
 function TicketDetailPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -74,7 +75,9 @@ function TicketDetailPage() {
               </div>
               <div>
                 <h5 className={styles.infoTitle}>Durumu:</h5>
-                <Badge variant="warning">{getStatusText(ticket?.status)}</Badge>
+                <Badge variant={getTicketStatusVariant(ticket?.status)}>
+                  {getStatusText(ticket?.status)}
+                </Badge>
               </div>
               {ticket?.response && (
                 <div>
