@@ -10,7 +10,7 @@
   font-weight: 500;
 }
 
-.formField span {
+.formField > span {
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--desctructive);
