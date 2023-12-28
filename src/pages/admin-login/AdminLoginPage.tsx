@@ -9,7 +9,7 @@ export default function AdminLoginPage() {
   const { token } = useAuth();
 
   if (token || getToken()) {
-    return <Navigate to={"/admin/basvuru-listesi"} replace={true} />;
+    return <Navigate to={"/admin/basvuru-listesi"} replace />;
   }
 
   return (
