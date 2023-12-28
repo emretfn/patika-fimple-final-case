@@ -31,7 +31,7 @@ export default function AdminTicketListPage() {
         </TabsList>
         <div className={styles.tabsContent}>
           {loading ? (
-            <Spinner size={36} />
+            <Spinner asOverlay />
           ) : tickets.length > 0 ? (
             <TicketCardList tickets={tickets} />
           ) : (
