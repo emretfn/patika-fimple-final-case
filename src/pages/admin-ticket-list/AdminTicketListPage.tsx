@@ -7,6 +7,7 @@ import { fetchTickets } from "@/store/ticket/ticketThunk";
 import { useTicketStore } from "@/store/ticket/hooks";
 import TicketCardList from "@/components/ticket/ticket-card-list/TicketCardList";
 import Spinner from "@/components/ui/Spinner/Spinner";
+import EmptyState from "@/components/empty-state/EmptyState";
 
 export default function AdminTicketListPage() {
   const [activeTab, setActiveTab] = useState<"unsolved" | "all">("unsolved");
@@ -29,7 +30,17 @@ export default function AdminTicketListPage() {
           <TabsTrigger value="all">Tüm Başvurular</TabsTrigger>
         </TabsList>
         <div className={styles.tabsContent}>
-          {loading ? <Spinner size={36} /> : <TicketCardList tickets={tickets} />}
+          {loading ? (
+            <Spinner size={36} />
+          ) : tickets.length > 0 ? (
+            <TicketCardList tickets={tickets} />
+          ) : (
+            <EmptyState
+              description={
+                activeTab === "unsolved" ? "Çözülmemiş başvuru bulunamadı." : "Başvuru bulunamadı."
+              }
+            />
+          )}
         </div>
       </Tabs>
     </main>

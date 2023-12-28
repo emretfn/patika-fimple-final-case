@@ -1,0 +1,23 @@
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.emptyState > img {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+.emptyState > p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--muted-foreground);
+}
