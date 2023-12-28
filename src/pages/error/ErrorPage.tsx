@@ -13,10 +13,12 @@ export default function Error() {
 
   return (
     <div className={styles.errorPage}>
-      <h1>Opps!</h1>
-      <p>Üzgünüz bir hata oluştu</p>
-      <p>{error.message}</p>
-      <Button onClick={handleGoHome}>Anasayfaya Dön</Button>
+      <img src="/error.svg" alt="error" />
+      <div className={styles.contentContainer}>
+        <h1>Opps!</h1>
+        <p>{error.message}</p>
+        <Button onClick={handleGoHome}>Anasayfaya Dön</Button>
+      </div>
     </div>
   );
 }
