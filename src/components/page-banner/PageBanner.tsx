@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import styles from "./PageBanner.module.css";
 
 interface PageBannerProps {
@@ -8,7 +9,7 @@ interface PageBannerProps {
 export default function PageBanner({ title, description }: PageBannerProps) {
   return (
     <div className={styles.pageBanner}>
-      <div className={`${styles.pageCaption} container`}>
+      <div className={clsx(styles.pageCaption, "container")}>
         <h1>{title}</h1>
         <p>{description}</p>
       </div>
