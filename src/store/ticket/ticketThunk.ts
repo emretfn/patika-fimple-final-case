@@ -4,9 +4,15 @@ import { AxiosError } from "axios";
 
 export const fetchTicketByCode = createAsyncThunk(
   "ticket/fetchTicketByCode",
-  async (code: string) => {
-    const { data } = await api.get(`/tickets/${code}`);
-    return data;
+  async (code: string, { rejectWithValue }) => {
+    try {
+      const { data } = await api.get(`/tickets/${code}`);
+      return data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data.message);
+      }
+    }
   }
 );
 

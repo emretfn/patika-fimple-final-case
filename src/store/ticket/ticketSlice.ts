@@ -33,8 +33,8 @@ export const ticketSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchTicketByCode.fulfilled, (state, action: PayloadAction<Ticket>) => {
       state.ticket = action.payload;
-      state.loading = false;
       state.error = null;
+      state.loading = false;
     });
     builder.addCase(fetchTicketByCode.pending, (state) => {
       state.loading = true;
@@ -42,24 +42,24 @@ export const ticketSlice = createSlice({
       state.ticket = null;
     });
     builder.addCase(fetchTicketByCode.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message || null;
       state.ticket = null;
+      state.error = action.error.message || null;
+      state.loading = false;
     });
     builder.addCase(fetchTickets.pending, (state) => {
       state.loading = true;
-      state.error = null;
       state.tickets = [];
+      state.error = null;
     });
     builder.addCase(fetchTickets.fulfilled, (state, action) => {
-      state.loading = false;
-      state.error = null;
       state.tickets = action.payload;
+      state.error = null;
+      state.loading = false;
     });
     builder.addCase(fetchTickets.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message || null;
       state.tickets = [];
+      state.error = action.error.message || null;
+      state.loading = false;
     });
   },
 });
