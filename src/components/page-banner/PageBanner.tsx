@@ -2,8 +2,8 @@ import clsx from "clsx";
 import styles from "./PageBanner.module.css";
 
 interface PageBannerProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
 
 export default function PageBanner({ title, description }: PageBannerProps) {

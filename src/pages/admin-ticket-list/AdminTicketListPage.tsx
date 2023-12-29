@@ -7,6 +7,7 @@ import { useTicketStore } from "@/store/ticket/hooks";
 import TicketCardList from "@/components/ticket/ticket-card-list/TicketCardList";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import EmptyState from "@/components/empty-state/EmptyState";
+import PageBanner from "@/components/page-banner/PageBanner";
 
 export default function AdminTicketListPage() {
   const [activeTab, setActiveTab] = useState<"unsolved" | "all">("unsolved");
@@ -22,26 +23,31 @@ export default function AdminTicketListPage() {
   };
 
   return (
-    <main className="container">
-      <Tabs value={activeTab} onValueChange={handleTabChange} className={styles.tabs}>
-        <TabsList className={styles.tabsList}>
-          <TabsTrigger value="unsolved">Çözülmemiş Başvurular</TabsTrigger>
-          <TabsTrigger value="all">Tüm Başvurular</TabsTrigger>
-        </TabsList>
-        <div className={styles.tabsContent}>
-          {loading ? (
-            <Spinner asOverlay />
-          ) : tickets.length > 0 ? (
-            <TicketCardList tickets={tickets} />
-          ) : (
-            <EmptyState
-              description={
-                activeTab === "unsolved" ? "Çözülmemiş başvuru bulunamadı." : "Başvuru bulunamadı."
-              }
-            />
-          )}
-        </div>
-      </Tabs>
+    <main>
+      <PageBanner title="Başvuru Listesi" />
+      <div className="container">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className={styles.tabs}>
+          <TabsList className={styles.tabsList}>
+            <TabsTrigger value="unsolved">Çözülmemiş Başvurular</TabsTrigger>
+            <TabsTrigger value="all">Tüm Başvurular</TabsTrigger>
+          </TabsList>
+          <div className={styles.tabsContent}>
+            {loading ? (
+              <Spinner asOverlay />
+            ) : tickets.length > 0 ? (
+              <TicketCardList tickets={tickets} />
+            ) : (
+              <EmptyState
+                description={
+                  activeTab === "unsolved"
+                    ? "Çözülmemiş başvuru bulunamadı."
+                    : "Başvuru bulunamadı."
+                }
+              />
+            )}
+          </div>
+        </Tabs>
+      </div>
     </main>
   );
 }

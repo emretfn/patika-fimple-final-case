@@ -32,7 +32,7 @@ function AdminTicketDetailPage() {
 
   return (
     <main>
-      <PageBanner title={`Başvuru #${ticket?.ticketCode}`} description="" />
+      <PageBanner title={`Başvuru #${ticket?.ticketCode}`} />
       <div className={clsx("container", styles.pageContainer)}>
         {!!ticket && (
           <Card>
