@@ -3,12 +3,14 @@ import styles from "./Navbar.module.css";
 import { useAuth } from "@/store/auth/hooks";
 import Button from "../ui/Button/Button";
 import clsx from "clsx";
-import { useAppDispatch } from "@/store";
-import { signOut } from "@/store/auth/authThunk";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import * as Popover from "@radix-ui/react-popover";
+import Navlinks from "./Navlinks";
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { userData } = useAuth();
-  const dispatch = useAppDispatch();
 
   return (
     <header className={styles.header}>
@@ -16,19 +18,21 @@ const Navbar = () => {
         <Link to={userData ? "/admin" : "/"}>
           <img src="/ticketease-logo.svg" alt="ticketease logo" />
         </Link>
-        {userData ? (
-          <div className={styles.links}>
-            <Link to={"/admin/basvuru-listesi"}>Başvuru Listesi</Link>
-            <Button variant="outline" onClick={() => dispatch(signOut())}>
-              Çıkış Yap
-            </Button>
-          </div>
-        ) : (
-          <div className={styles.links}>
-            <Link to={"/basvuru-olustur"}>Başvuru Oluştur</Link>
-            <Link to={"/basvuru-sorgula"}>Başvuru Sorgula</Link>
-          </div>
-        )}
+        <div className={styles.desktopLinks}>
+          <Navlinks user={userData} />
+        </div>
+        <div className={styles.mobileMenu}>
+          <Popover.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <Popover.Trigger asChild>
+              <Button variant="outline" size="icon">
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </Button>
+            </Popover.Trigger>
+            <Popover.Content className={styles.mobilePopoverContent}>
+              <Navlinks user={userData} />
+            </Popover.Content>
+          </Popover.Root>
+        </div>
       </nav>
     </header>
   );
