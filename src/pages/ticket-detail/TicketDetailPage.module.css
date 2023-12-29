@@ -9,10 +9,6 @@
   flex: 1;
 }
 
-.infoTitle {
-  font-weight: 700;
-}
-
 .contentWrapper {
   row-gap: 1rem;
 }

@@ -1,0 +1,9 @@
+.applicationStatusInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.applicationStatusInfo b {
+  font-weight: 500;
+}
