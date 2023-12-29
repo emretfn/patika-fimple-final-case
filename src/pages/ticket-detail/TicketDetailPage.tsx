@@ -7,14 +7,13 @@ import { useEffect } from "react";
 import { fetchTicketByCode } from "@/store/ticket/ticketThunk";
 import { useParams } from "react-router-dom";
 import { useTicketStore } from "@/store/ticket/hooks";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
+import { useAppDispatch } from "@/store";
 import { getStatusText } from "@/lib/helpers/getStatusText";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { getTicketStatusVariant } from "@/lib/helpers/getTicketStatusVariant";
 
 function TicketDetailPage() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { ticketCode } = useParams();
   const { ticket, error, loading } = useTicketStore();
 

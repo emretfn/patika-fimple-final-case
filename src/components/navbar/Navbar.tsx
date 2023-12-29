@@ -3,13 +3,12 @@ import styles from "./Navbar.module.css";
 import { useAuth } from "@/store/auth/hooks";
 import Button from "../ui/Button/Button";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
+import { useAppDispatch } from "@/store";
 import { signOut } from "@/store/auth/authThunk";
 
 const Navbar = () => {
   const { userData } = useAuth();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   return (
     <header className={styles.header}>

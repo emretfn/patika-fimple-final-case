@@ -16,8 +16,7 @@ import {
   adminUpdateTicketSchema,
 } from "@/lib/validations/admin-update-ticket-schema";
 import { Ticket } from "@/types";
-import { AppDispatch } from "@/store";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/store";
 import { useEffect } from "react";
 import api from "@/lib/api";
 import { AxiosError } from "axios";
@@ -29,7 +28,7 @@ interface AdminUpdateTicketFormProps {
 }
 
 export default function AdminUpdateTicketForm({ ticket }: AdminUpdateTicketFormProps) {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,

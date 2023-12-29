@@ -5,8 +5,7 @@ import styles from "./AdminLoginForm.module.css";
 import { AdminLoginType, adminLoginSchema } from "@/lib/validations/admin-login-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
+import { useAppDispatch } from "@/store";
 import { login } from "@/store/auth/authThunk";
 import { useAuth } from "@/store/auth/hooks";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ import { toast } from "sonner";
 
 export default function AdminLoginForm() {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { loading } = useAuth();
 
   const {

@@ -1,7 +1,6 @@
-import { useDispatch } from "react-redux";
 import styles from "./AdminTicketListPage.module.css";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs/Tabs";
-import { AppDispatch } from "@/store";
+import { useAppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 import { fetchTickets } from "@/store/ticket/ticketThunk";
 import { useTicketStore } from "@/store/ticket/hooks";
@@ -11,7 +10,7 @@ import EmptyState from "@/components/empty-state/EmptyState";
 
 export default function AdminTicketListPage() {
   const [activeTab, setActiveTab] = useState<"unsolved" | "all">("unsolved");
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { loading, tickets } = useTicketStore();
 
   useEffect(() => {

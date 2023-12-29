@@ -3,16 +3,15 @@ import { Card, CardContent, CardHeader } from "@/components/card/Card";
 import PageBanner from "@/components/page-banner/PageBanner";
 import AdminUpdateTicketForm from "@/components/ticket/admin-update-ticket-form/AdminUpdateTicketForm";
 import Spinner from "@/components/ui/Spinner/Spinner";
-import { AppDispatch } from "@/store";
+import { useAppDispatch } from "@/store";
 import { useTicketStore } from "@/store/ticket/hooks";
 import { fetchTicketByCode } from "@/store/ticket/ticketThunk";
 import clsx from "clsx";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function AdminTicketDetailPage() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { ticketCode } = useParams();
   const { ticket, error, loading } = useTicketStore();
 

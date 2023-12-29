@@ -9,14 +9,14 @@ import { CreateTicketType, createTicketSchema } from "@/lib/validations/create-t
 import { mockUpload } from "@/lib/helpers/mockUpload";
 import api from "@/lib/api";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { setTicket } from "@/store/ticket/ticketSlice";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { useAppDispatch } from "@/store";
 
 export default function CreateTicketForm() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     register,
