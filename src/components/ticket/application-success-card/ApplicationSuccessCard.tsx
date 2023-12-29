@@ -8,6 +8,7 @@ import useClipboard from "@/hooks/useClipboard";
 import { Ticket } from "@/types";
 import Badge from "@/components/ui/Badge/Badge";
 import { Card, CardContent } from "@/components/card/Card";
+import ApplicationInfo from "../application-info/ApplicationInfo";
 
 interface ApplicationSuccessCardProps {
   ticket: Ticket;
@@ -30,13 +31,7 @@ export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCar
         <div ref={contentRef} className={styles.details}>
           <span className={styles.subtitle}>Başvuru detayları · {applicationTime}</span>
           <h4>Başvuru Sahibi Bilgileri:</h4>
-          <UserInfo title="Ad" value={ticket.userName} />
-          <UserInfo title="Soyad" value={ticket.userSurname} />
-          <UserInfo title="Yaş" value={ticket.userAge.toString()} />
-          <UserInfo title="TC Kimlik Numarası" value={ticket.userTc} />
-          <UserInfo title="Başvuru Nedeni" value={ticket.reason} />
-          <UserInfo title="Adres" value={ticket.address} />
-
+          <ApplicationInfo ticket={ticket} />
           <div className={styles.badgeWrapper}>
             <span className={styles.subtitle}>Başvuru kodu:</span>
             <Badge className={styles.badge} onClick={() => copyToClipboard(ticket.ticketCode)}>
@@ -63,11 +58,3 @@ export default function ApplicationSuccessCard({ ticket }: ApplicationSuccessCar
     </Card>
   );
 }
-
-const UserInfo = ({ title, value }: { title: string; value: string }) => {
-  return (
-    <p>
-      <span>{title}:</span> {value}
-    </p>
-  );
-};

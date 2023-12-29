@@ -11,6 +11,7 @@ import { useAppDispatch } from "@/store";
 import { getStatusText } from "@/lib/helpers/getStatusText";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { getTicketStatusVariant } from "@/lib/helpers/getTicketStatusVariant";
+import ApplicationInfo from "@/components/ticket/application-info/ApplicationInfo";
 
 function TicketDetailPage() {
   const dispatch = useAppDispatch();
@@ -38,28 +39,14 @@ function TicketDetailPage() {
         description="Aşağıdaki alandan başvuru detaylarınızı ve durumunu kontrol edebilirsiniz."
       />
       <div className={clsx("container", styles.container)}>
-        <Card className={styles.cardContainer}>
-          <CardHeader className={styles.cardTitle}>Başvuran Detayları</CardHeader>
-          <CardContent className={styles.contentWrapper}>
-            <div>
-              <h5 className={styles.infoTitle}>
-                {ticket?.userName} {ticket?.userSurname}
-              </h5>
-              <p>
-                Yaş: {ticket?.userAge} <br />
-                TC: {ticket?.userTc} <br />
-              </p>
-            </div>
-            <div>
-              <h5 className={styles.infoTitle}>Adres:</h5>
-              <p>{ticket?.address}</p>
-            </div>
-            <div>
-              <h5 className={styles.infoTitle}>Başvuru Sebebi:</h5>
-              <p>{ticket?.reason}</p>
-            </div>
-          </CardContent>
-        </Card>
+        {!!ticket && (
+          <Card className={styles.cardContainer}>
+            <CardHeader className={styles.cardTitle}>Başvuran Detayları</CardHeader>
+            <CardContent className={styles.contentWrapper}>
+              <ApplicationInfo ticket={ticket} />
+            </CardContent>
+          </Card>
+        )}
         <Card className={styles.cardContainer}>
           <CardHeader>Başvuru Durumu</CardHeader>
           <CardContent className={styles.contentWrapper}>

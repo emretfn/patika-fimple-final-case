@@ -1,0 +1,38 @@
+.applicationInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--muted-foreground);
+  gap: 0.5rem;
+}
+.applicationInfo b {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.uploadedFiles {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--foreground);
+  font-weight: 500;
+  gap: 0.25rem;
+}
+.uploadedFiles .fileLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.uploadedFiles .fileLinks a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+.uploadedFiles .fileLinks a:hover {
+  text-decoration: underline;
+}
