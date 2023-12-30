@@ -3,8 +3,6 @@ As the final project of the **Fimple React Bootcamp** in collaboration with Pati
 
 ## ⚙️ Installation and Setup
 
-Before you start, make sure that Node.js and yarn are installed on your system.
-
 Follow these steps to install and run the project on your local machine:
 
 1. Clone the repository to your local machine using the command:
@@ -33,7 +31,7 @@ yarn dev
 
 The application should now be running on http://localhost:3000.
 
-Please note that you **must** setup a `.env.local` file in the root of the project with your environment variables. Specifically, you need to provide the API URL. You can use `https://api.ticketease.emretufan.dev/` for this purpose. Refer to the `.env.example` file in the root of the project for the necessary environment variables.
+Please note that you **must** setup a `.env.local` file in the root of the project with your environment variables. Specifically, you need to provide the API URL. You can use `https://api.ticketease.emretufan.dev` for this purpose. Refer to the `.env.example` file in the root of the project for the necessary environment variables.
 
 ## 💻 Technologies and Libraries
 
