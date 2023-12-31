@@ -35,19 +35,22 @@ function AdminTicketDetailPage() {
       <PageBanner title={`Başvuru #${ticket?.ticketCode}`} />
       <div className={clsx("container", styles.pageContainer)}>
         {!!ticket && (
-          <Card>
-            <CardHeader>Başvuran Bilgisi</CardHeader>
-            <CardContent className={styles.applicantCardContent}>
-              <ApplicationInfo ticket={ticket} />
-            </CardContent>
-          </Card>
+          <>
+            <Card>
+              <CardHeader>Başvuran Bilgisi</CardHeader>
+              <CardContent className={styles.applicantCardContent}>
+                <ApplicationInfo ticket={ticket} />
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>Başvuruyu güncelle</CardHeader>
+              <CardContent>
+                <AdminUpdateTicketForm ticket={ticket} />
+              </CardContent>
+            </Card>
+          </>
         )}
-        <Card>
-          <CardHeader>Başvuruyu güncelle</CardHeader>
-          <CardContent>
-            <AdminUpdateTicketForm ticket={ticket} />
-          </CardContent>
-        </Card>
       </div>
     </main>
   );

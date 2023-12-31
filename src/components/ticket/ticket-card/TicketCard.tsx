@@ -6,6 +6,7 @@ import { getStatusText } from "@/lib/helpers/getStatusText";
 import Button from "@/components/ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { getTicketStatusVariant } from "@/lib/helpers/getTicketStatusVariant";
+import { getUserFullname } from "@/lib/helpers/getUserFullname";
 
 interface TicketCardProps {
   ticket: Ticket;
@@ -19,9 +20,7 @@ export default function TicketCard({ ticket }: TicketCardProps) {
         <span>Başvuru #{ticket.ticketCode}</span>
       </CardHeader>
       <CardContent className={styles.cardContent}>
-        <p>
-          Başvuran: {ticket.userName} {ticket.userSurname}
-        </p>
+        <p>Başvuran: {getUserFullname(ticket.userName, ticket.userSurname)}</p>
         <p>Başvuru Tarihi: {new Date(ticket.createdAt).toLocaleDateString()}</p>
         <Badge variant={getTicketStatusVariant(ticket.status)} className={styles.badge}>
           {getStatusText(ticket.status)}

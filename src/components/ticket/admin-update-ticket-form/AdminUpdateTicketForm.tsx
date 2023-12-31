@@ -24,7 +24,7 @@ import { toast } from "sonner";
 import { updateTicket } from "@/store/ticket/ticketSlice";
 
 interface AdminUpdateTicketFormProps {
-  ticket: Ticket | null;
+  ticket: Ticket;
 }
 
 export default function AdminUpdateTicketForm({ ticket }: AdminUpdateTicketFormProps) {
@@ -44,24 +44,20 @@ export default function AdminUpdateTicketForm({ ticket }: AdminUpdateTicketFormP
   });
 
   useEffect(() => {
-    if (ticket) {
-      reset({
-        status: ticket.status,
-        response: ticket.response,
-      });
-    }
+    reset({
+      status: ticket.status,
+      response: ticket.response,
+    });
   }, [ticket, reset]);
 
   const handleUpdate: SubmitHandler<AdminUpdateTicketType> = async (formData) => {
-    if (ticket) {
-      try {
-        const { data } = await api.put(`/tickets/${ticket.id}`, formData);
-        dispatch(updateTicket(data));
-        toast.success("Başvuru güncellendi.");
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          toast.error(error.response?.data.message);
-        }
+    try {
+      const { data } = await api.put(`/tickets/${ticket.id}`, formData);
+      dispatch(updateTicket(data));
+      toast.success("Başvuru güncellendi.");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message);
       }
     }
   };
