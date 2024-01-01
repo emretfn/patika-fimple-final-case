@@ -1,6 +1,10 @@
 ![Ticketease cover image](.github/_assets/cover.png)
 As the final project of the **Fimple React Bootcamp** in collaboration with Patika.dev and Fimple, I developed an application called **ticketease**, which is an **Application/Ticket Management system**. The application is generally about making an application, tracking the relevant application and resolving this application.
 
+## 🚀 Live Version
+
+The live version of **ticketease** is available! You can access and interact with it at [https://ticketease.emretufan.dev](https://ticketease.emretufan.dev).
+
 ## ⚙️ Installation and Setup
 
 Follow these steps to install and run the project on your local machine:
